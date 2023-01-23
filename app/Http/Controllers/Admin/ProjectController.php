@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller; // <----- a aggiungere se il controller lo 
 use App\Http\Requests\ProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -24,6 +26,12 @@ class ProjectController extends Controller
         return view('admin.projects.index', compact('projects','direction'));
     }
 
+    public function types_project(){
+        $types = Type::all();
+        return view('admin.projects.list_type_project', compact('types'));
+    }
+
+
     public function orderby($column, $direction){
         $direction = $direction === 'desc' ? 'asc' : 'desc';
         $projects = Project::orderBy($column,$direction)->paginate(10);
@@ -37,7 +45,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -83,7 +92,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project','types'));
     }
 
     /**

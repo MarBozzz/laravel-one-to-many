@@ -30,7 +30,19 @@
                         {{$message}}
                     </p>
                 @enderror
-                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select" name="type_id" aria-label="Default select example">
+                    <option value="">Select type</option>
+                        @foreach ($types as $type)
+                            <option
+                                @if($type->id == old('type_id')) selected @endif
+                                value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                </select>
+            </div>
 
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Image</label>

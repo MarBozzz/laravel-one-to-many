@@ -22,6 +22,11 @@
         <img src="{{$project->cover_image}}" class="card-img-top" alt="{{$project->name}}">
         <div class="card-body">
         <h3 class="card-title text-center py-3">{{$project->name}}</h5>
+
+        @if ($project->type)
+            <h4>Type: {{ $project->type->name }}</h4>
+        @endif
+
         <h5 class="card-title">Client name: {{$project->client_name}}</h5>
         <p class="card-text py-3">Summary{!!$project->summary!!}</p>
         </div>

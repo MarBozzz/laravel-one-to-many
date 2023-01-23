@@ -9,5 +9,8 @@
         <li class="">
             <a class="mb-nav-link" href="{{ route('admin.projects.create') }}"><i class="fa-solid fa-pen-to-square"></i>New Project</a>
         </li>
+        <li class="">
+            <a class="mb-nav-link" href="{{ route('admin.types_project') }}"><i class="fa-solid fa-pen-to-square"></i>Type/Project</a>
+        </li>
     </ul>
 </nav>

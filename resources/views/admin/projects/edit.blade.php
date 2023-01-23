@@ -36,7 +36,19 @@
                         {{$message}}
                     </p>
                 @enderror
-                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select" name="type_id" aria-label="Default select example">
+                    <option value="">Select type</option>
+                        @foreach ($types as $type)
+                            <option
+                                @if($type->id == old( 'type_id', $project?->id )) selected @endif
+                                value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                </select>
+            </div>
 
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Image *</label>
@@ -51,7 +63,7 @@
                 <div class="image mt-2">
                     <img id="output-image" width="150" src="{{ asset('storage/' . $project->cover_image) }}" alt="{{$project->cover_image_original_name}}">
                 </div>
-                </div>
+            </div>
 
             <div class="mb-3">
                 <label for="client_name" class="form-label">Client Name *</label>
@@ -71,6 +83,7 @@
                         {{$message}}
                     </p>
                 @enderror
+            </div>
 
             <div class="buttons my-5">
                 <button type="submit" class="btn btn-success mb-0 w-100">Send Edit</button>
